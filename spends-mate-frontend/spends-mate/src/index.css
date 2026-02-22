@@ -1,0 +1,359 @@
+/* ── Reset & base ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue-50:  #eff6ff;
+  --blue-100: #dbeafe;
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+  --blue-700: #1d4ed8;
+
+  --gray-50:  #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-400: #9ca3af;
+  --gray-600: #4b5563;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+
+  --amber-50:  #fffbeb;
+  --amber-200: #fde68a;
+  --amber-600: #d97706;
+
+  --green-100: #dcfce7;
+  --green-700: #15803d;
+
+  --red-100: #fee2e2;
+  --red-600: #dc2626;
+
+  --radius:  8px;
+  --shadow:  0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
+  --shadow-md: 0 4px 6px rgba(0,0,0,.07), 0 2px 4px rgba(0,0,0,.05);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--gray-50);
+  color: var(--gray-800);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* ── Layout ───────────────────────────────────────────────── */
+.layout        { min-height: 100vh; display: flex; flex-direction: column; }
+.page-content  { max-width: 900px; margin: 0 auto; padding: 32px 24px; width: 100%; }
+
+/* ── Nav ──────────────────────────────────────────────────── */
+.navbar {
+  background: #fff;
+  border-bottom: 1px solid var(--gray-200);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.navbar-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.navbar-brand {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--blue-600);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.navbar-brand span { color: var(--gray-800); }
+.nav-links { display: flex; gap: 4px; }
+.nav-link {
+  padding: 6px 14px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--gray-600);
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s;
+}
+.nav-link:hover    { background: var(--gray-100); color: var(--gray-900); }
+.nav-link.active   { background: var(--blue-50);  color: var(--blue-600); }
+
+/* ── Cards ────────────────────────────────────────────────── */
+.card {
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+.card-title {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--gray-400);
+  margin-bottom: 16px;
+}
+
+/* ── Page header ──────────────────────────────────────────── */
+.page-header        { margin-bottom: 24px; }
+.page-header h1     { font-size: 22px; font-weight: 700; color: var(--gray-900); }
+.page-header p      { color: var(--gray-600); font-size: 14px; margin-top: 4px; }
+
+/* ── Grid ─────────────────────────────────────────────────── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 640px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+
+/* ── Stat tile ────────────────────────────────────────────── */
+.stat-tile         { padding: 20px 24px; }
+.stat-tile .label  { font-size: 13px; color: var(--gray-400); font-weight: 500; }
+.stat-tile .value  { font-size: 26px; font-weight: 700; color: var(--gray-900); margin-top: 4px; }
+
+/* ── Table ────────────────────────────────────────────────── */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+thead th {
+  text-align: left;
+  padding: 10px 14px;
+  background: var(--gray-50);
+  border-bottom: 1px solid var(--gray-200);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--gray-400);
+}
+tbody td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--gray-100);
+  color: var(--gray-800);
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td       { background: var(--gray-50); }
+
+/* ── Badge ────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.badge-blue   { background: var(--blue-100);  color: var(--blue-700); }
+.badge-amber  { background: var(--amber-200); color: var(--amber-600); }
+.badge-green  { background: var(--green-100); color: var(--green-700); }
+.badge-red    { background: var(--red-100);   color: var(--red-600);   }
+
+/* ── Form ─────────────────────────────────────────────────── */
+.form        { display: flex; flex-direction: column; gap: 16px; }
+.form-group  { display: flex; flex-direction: column; gap: 6px; }
+label        { font-size: 13px; font-weight: 500; color: var(--gray-600); }
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea {
+  padding: 9px 12px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  font-size: 14px;
+  color: var(--gray-900);
+  background: #fff;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
+}
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--blue-500);
+  box-shadow: 0 0 0 3px rgba(59,130,246,.12);
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 20px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s, opacity 0.15s;
+}
+.btn-primary  { background: var(--blue-600); color: #fff; }
+.btn-primary:hover:not(:disabled) { background: var(--blue-700); }
+.btn-outline  { background: #fff; color: var(--gray-600); border: 1px solid var(--gray-200); }
+.btn-outline:hover:not(:disabled) { background: var(--gray-50); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-full     { width: 100%; }
+
+/* ── File upload zone ─────────────────────────────────────── */
+.upload-zone {
+  border: 2px dashed var(--gray-200);
+  border-radius: var(--radius);
+  padding: 36px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  color: var(--gray-400);
+  font-size: 14px;
+}
+.upload-zone:hover,
+.upload-zone.has-file { border-color: var(--blue-500); background: var(--blue-50); }
+.upload-zone .file-name { color: var(--blue-600); font-weight: 500; margin-top: 6px; }
+
+/* ── Alerts ───────────────────────────────────────────────── */
+.alert {
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  margin-top: 16px;
+}
+.alert-success { background: var(--green-100); color: var(--green-700); }
+.alert-error   { background: var(--red-100);   color: var(--red-600);   }
+.alert-amber   { background: var(--amber-50);  color: var(--amber-600); border: 1px solid var(--amber-200); }
+
+/* ── Progress bar (CSV upload) ────────────────────────────── */
+.progress-bar-wrap { background: var(--gray-100); border-radius: 999px; height: 6px; margin-top: 8px; }
+.progress-bar      { height: 6px; border-radius: 999px; background: var(--blue-500); transition: width 0.3s; }
+
+/* ── Empty state ──────────────────────────────────────────── */
+.empty-state { text-align: center; padding: 40px 24px; color: var(--gray-400); font-size: 14px; }
+
+/* ── Vendor rank bar ──────────────────────────────────────── */
+.vendor-row        { display: flex; align-items: center; gap: 12px; padding: 8px 0;
+                     border-bottom: 1px solid var(--gray-100); }
+.vendor-row:last-child { border-bottom: none; }
+.vendor-rank       { font-size: 12px; font-weight: 700; color: var(--gray-400); width: 20px; }
+.vendor-name       { flex: 1; font-size: 14px; font-weight: 500; }
+.vendor-bar-wrap   { width: 120px; background: var(--gray-100); border-radius: 999px; height: 6px; }
+.vendor-bar        { height: 6px; border-radius: 999px; background: var(--blue-200); }
+.vendor-amount     { font-size: 13px; font-weight: 600; color: var(--gray-800); width: 90px; text-align: right; }
+
+/* ── Spinner ──────────────────────────────────────────────── */
+.spinner {
+  width: 20px; height: 20px;
+  border: 2px solid var(--gray-200);
+  border-top-color: var(--blue-500);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  margin: 40px auto;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Smooth page transitions ──────────────────────────────── */
+.page-content {
+  animation: fadeIn 0.2s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Navbar subtle gradient ───────────────────────────────── */
+.navbar {
+  background: linear-gradient(to right, #fff 60%, var(--blue-50));
+}
+
+/* ── Stat tile hover ──────────────────────────────────────── */
+.stat-tile {
+  transition: box-shadow 0.15s, transform 0.15s;
+  cursor: default;
+}
+.stat-tile:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* ── Card hover ───────────────────────────────────────────── */
+.card {
+  transition: box-shadow 0.15s;
+}
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* ── Table row transition ─────────────────────────────────── */
+tbody tr {
+  transition: background 0.1s;
+}
+
+/* ── Button active press feel ─────────────────────────────── */
+.btn-primary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+/* ── Badge subtle shadow ──────────────────────────────────── */
+.badge {
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+
+/* ── Upload zone border animation ────────────────────────── */
+.upload-zone {
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+}
+.upload-zone:hover {
+  transform: translateY(-1px);
+}
+
+/* ── Anomaly amount pulse ─────────────────────────────────── */
+tbody tr:has(.badge-amber) td:last-child {
+  animation: anomalyPulse 2s ease-in-out infinite;
+}
+@keyframes anomalyPulse {
+  0%, 100% { color: var(--red-600); }
+  50%       { color: #f87171; }
+}
+
+/* ── Vendor bar animation on load ────────────────────────── */
+.vendor-bar {
+  animation: growBar 0.6s ease forwards;
+  transform-origin: left;
+}
+@keyframes growBar {
+  from { width: 0 !important; }
+}
+
+/* ── Input focus ring tighter ─────────────────────────────── */
+input:focus, textarea:focus {
+  box-shadow: 0 0 0 2px rgba(59,130,246,.18);
+}
+
+/* ── Nav brand hover ──────────────────────────────────────── */
+.navbar-brand {
+  transition: opacity 0.15s;
+}
+.navbar-brand:hover {
+  opacity: 0.8;
+}
+
+/* ── Page header divider ──────────────────────────────────── */
+.page-header {
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--gray-200);
+  margin-bottom: 28px;
+}
+
+/* ── Alert icon spacing ───────────────────────────────────── */
+.alert {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ── Scrollbar subtle ─────────────────────────────────────── */
+::-webkit-scrollbar       { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--gray-100); }
+::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gray-400); }
